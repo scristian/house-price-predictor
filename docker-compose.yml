@@ -1,0 +1,32 @@
+# version: "3.9"
+
+services:
+  fastapi:
+    image: scristian/fastapi:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # container_name: fastapi_service
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./fastapi:/app
+    # command: uvicorn main:app --host 0.0.0.0 --port 8000
+    # restart: always
+
+  streamlit:
+    image: scristian/streamlit:v1
+    build:
+      context: streamlit_app
+      dockerfile: Dockerfile
+    # container_name: streamlit_service
+    ports:
+      - "8501:8501"
+    # volumes:
+    #   - ./streamlit:/app
+    depends_on:
+      - fastapi
+    environment:
+      - API_URL=http://fastapi:8000
+    # command: streamlit run app.py --server.address=0.0.0.0
+    # restart: always
