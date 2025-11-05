@@ -56,7 +56,7 @@ To begin, ensure the following tools are installed on your system:
 3. **Setup Python Virtual Environment using UV:**
 
    ```bash
-   uv venv --python python3.11
+   uv venv --python python3.13.2
    source .venv/bin/activate
    ```
 
@@ -108,7 +108,7 @@ python -m jupyterlab
 Clean and preprocess the raw housing dataset:
 
 ```bash
-python src/data/run_processing.py   --input data/raw/house_data.csv   --output data/processed/cleaned_house_data.csv
+python3 src/data/run_processing.py   --input data/raw/house_data.csv   --output data/processed/cleaned_house_data.csv
 ```
 
 ---
@@ -118,7 +118,7 @@ python src/data/run_processing.py   --input data/raw/house_data.csv   --output d
 Apply transformations and generate features:
 
 ```bash
-python src/features/engineer.py   --input data/processed/cleaned_house_data.csv   --output data/processed/featured_house_data.csv   --preprocessor models/trained/preprocessor.pkl
+python3 src/features/engineer.py   --input data/processed/cleaned_house_data.csv   --output data/processed/featured_house_data.csv   --preprocessor models/trained/preprocessor.pkl
 ```
 
 ---
