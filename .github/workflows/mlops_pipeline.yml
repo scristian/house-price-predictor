@@ -151,7 +151,7 @@ jobs:
         docker build -t docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:${COMMIT_SHA} -f ./Dockerfile .
         docker run -d -p 8000:8000 --name test-api docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:${COMMIT_SHA}
         for i in {1..10}; do
-          if curl -s http://localhost:8000/health >/dev/null; then
+          if curl -s http://localhost:8000/health ; then
             echo "API is up!"
             break
           else
